@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulaire Profil</title>
+  <style>
+    body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f2f5;
+  padding: 40px;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.form-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: 600;
+  color: #444;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 15px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.2);
+  outline: none;
+}
+
+textarea {
+  height: 70px;
+  resize: vertical;
+}
+
+button {
+  margin-top: 25px;
+  padding: 12px 25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  float: right;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.output {
+  background-color: #fff;
+  border-radius: 12px;
+  border: 2px solid #007bff;
+  padding: 20px;
+  margin-top: 40px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.output h3 {
+  font-weight: 600;
+  color: #007bff;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <form id="profileForm">
+      <div class="form-section">
+        <h2>Informations Personnelles</h2>
+
+        <label>Nom :</label>
+        <input type="text" placeholder="Nom" required>
+
+        <label>Prénom :</label>
+        <input type="text" placeholder="Prénom" required>
+
+        <label>Date de Naissance :</label>
+        <input type="date" required>
+
+        <label>E-mail :</label>
+        <input type="email" placeholder="Adresse e-mail" required>
+
+        <label>Sexe :</label>
+        <select>
+          <option value="M">M</option>
+          <option value="F">F</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <h2>Informations Additionnelles</h2>
+
+        <label>Profil Linkedin :</label>
+        <input type="text" placeholder="Profil LinkedIn">
+
+        <label>Profil Github :</label>
+        <input type="text" placeholder="Profil GitHub">
+
+        <label>Nombre d'année d'expérience :</label>
+        <input type="number" placeholder="Nombre d’années d’expérience">
+
+        <textarea placeholder="Texte additionnel"></textarea>
+
+        <label>Sélectionner un fichier :</label>
+        <input type="file">
+
+        <button type="submit">Envoyer</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="output">
+    <h3>Détails du Profil :</h3>
+  </div>
+
+  <script>
+    document.getElementById('profileForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const inputs = this.elements;
+      const nom = inputs[0].value;
+      const prenom = inputs[1].value;
+      const dateNaissance = inputs[2].value;
+      const email = inputs[3].value;
+      const sexe = inputs[4].value;
+
+      const linkedin = inputs[5].value;
+      const github = inputs[6].value;
+      const experience = inputs[7].value;
+      const commentaire = inputs[8].value;
+      const fichier = inputs[9].files[0] ? inputs[9].files[0].name : "Aucun fichier sélectionné";
+
+      document.querySelector('.output').innerHTML = `
+        <h3>Détails du Profil :</h3>
+        <ul>
+          <li><strong>Nom :</strong> ${nom}</li>
+          <li><strong>Prénom :</strong> ${prenom}</li>
+          <li><strong>Date de Naissance :</strong> ${dateNaissance}</li>
+          <li><strong>Email :</strong> ${email}</li>
+          <li><strong>Sexe :</strong> ${sexe}</li>
+          <li><strong>LinkedIn :</strong> ${linkedin}</li>
+          <li><strong>GitHub :</strong> ${github}</li>
+          <li><strong>Années d'expérience :</strong> ${experience}</li>
+          <li><strong>Commentaire :</strong> ${commentaire}</li>
+          <li><strong>Fichier :</strong> ${fichier}</li>
+        </ul>
+      `;
+    });
+  </script>
+
+</body>
+</html>
